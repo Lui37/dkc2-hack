@@ -1,5 +1,5 @@
 features
-- frame counter on the top right of the screen, in minutes, seconds and frames. ignores loading during transitions
+- frame counter on the top right of the screen, in "m ss ff" (minutes, seconds, frames). ignores loading time during transitions
 - lag frame counter on the top left of the screen
 - infinite lives
 
