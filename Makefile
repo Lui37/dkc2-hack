@@ -14,7 +14,7 @@ j1.1ss:
 	cp "sfc/DKC2 Practice 0.10.sfc" "target/DKC2 Practice 0.10 + timer.sfc" && cd src && asar -Drom_revision=1 main.asm  "../target/DKC2 Practice 0.10 + timer.sfc" && cd -
 
 
-all: j1.0 j1.1 u1.0 u1.1
+all: j1.0 j1.1 u1.0 u1.1 j1.1ss
 
 clean:
 	rm -f target/*
