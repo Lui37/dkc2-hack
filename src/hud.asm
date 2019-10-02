@@ -51,13 +51,13 @@ handle_displays:
 		
 		LDA !timer_minutes
 		AND #$00FF
-		JSR !draw_digit
+		JSR draw_digit
 		INX
 		INX
 		
 		; seconds tens digit
 		LDA $4214
-		JSR !draw_digit
+		JSR draw_digit
 		; seconds units digit
 		LDA $4216
 		TAY
@@ -70,16 +70,16 @@ handle_displays:
 		STA $4206
 		REP #$20
 		TYA
-		JSR !draw_digit
+		JSR draw_digit
 		INX
 		INX
 		
 		; frames tens digit
 		LDA $4214
-		JSR !draw_digit
+		JSR draw_digit
 		; seconds tens digit
 		LDA $4216
-		JSR !draw_digit
+		JSR draw_digit
 		
 		JMP draw_dropped_frames
 		
@@ -153,11 +153,11 @@ draw_dropped_frames:
 		CMP #$0009
 		BCC .no_cap
 		LDA #$0009
-		JSR !draw_digit
+		JSR draw_digit
 		LDA #$0009
-		JSR !draw_digit
+		JSR draw_digit
 		LDA #$0009
-		JMP !draw_digit
+		JMP draw_digit
 		
 	.no_cap:
 		TAY
@@ -171,13 +171,13 @@ draw_dropped_frames:
 		REP #$20
 		; draw hundreds digit
 		TYA
-		JSR !draw_digit
+		JSR draw_digit
 		
 		; draw tens digit
 		LDA $4214
-		JSR !draw_digit
+		JSR draw_digit
 		
 		; draw units digit
 		LDA $4216
-		JMP !draw_digit
+		JMP draw_digit
 		

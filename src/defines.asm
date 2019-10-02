@@ -1,7 +1,7 @@
 @include
 
 ; define rom locations based on rom revision
-if !version == 0
+if !rom_revision == 0
 	hijack_level = $808640
 	hijack_map = $B5D404
 	hijack_bonus_intro = $808CA4
@@ -9,9 +9,9 @@ if !version == 0
 	lives_dec = $BEC66D
 	hijack_lives = $BEC70E
 	end_bananas = $BEC89F
-	draw_digit = $C814
+	draw_digit = $BEC814
 	freerom_BE = $BEFB5C
-elseif !version == 1
+elseif !rom_revision == 1
 	hijack_level = $808640
 	hijack_bonus_intro = $808CD3
 	hijack_map = $B5D424
@@ -19,7 +19,7 @@ elseif !version == 1
 	lives_dec = $BEC678
 	hijack_lives = $BEC719
 	end_bananas = $BEC8AA
-	draw_digit = $C81F
+	draw_digit = $BEC81F
 	freerom_BE = $BEFB67
 endif
 
