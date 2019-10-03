@@ -77,7 +77,7 @@ handle_displays:
 		; frames tens digit
 		LDA $4214
 		JSR draw_digit
-		; seconds tens digit
+		; frames units digit
 		LDA $4216
 		JSR draw_digit
 		
@@ -85,39 +85,71 @@ handle_displays:
 		
 		
 tick_timer:
+		REP #$20
 		LDA !timer_frames
 		CLC
 		ADC !real_frames_elapsed
 		STA !timer_frames
-		CMP #60
+		CMP.w #60
 		BCC .done
+		CMP.w #120
+		BCC .one_sec
 		
-		SBC #60
+		STA $4204
+		SEP #$20
+		LDA #60
+		STA $4206
+		REP #$21
+		NOP #6
+		LDA $4216
 		STA !timer_frames
-		LDA !timer_seconds
-		ADC #0
-		STA !timer_seconds
-		CMP #60
-		BCC .done
+		LDA $4214
+		BRA .add_sec
 		
-		SBC #60
+	.one_sec:
+		SBC.w #59
+		STA !timer_frames
+		TDC
+	.add_sec:
+		ADC !timer_seconds
 		STA !timer_seconds
-		LDA !timer_minutes
-		ADC #0
-		CMP #10
+		CMP.w #60
+		BCC .done
+		CMP.w #120
+		BCC .one_min
+		
+		STA $4204
+		SEP #$20
+		LDA #60
+		STA $4206
+		REP #$21
+		NOP #6
+		LDA $4216
+		STA !timer_seconds
+		LDA $4214
+		BRA .add_min
+		
+	.one_min:
+		SBC.w #59
+		STA !timer_seconds
+		TDC
+	.add_min:
+		ADC !timer_minutes
+		STA !timer_minutes
+		CMP.w #10
 		BCC .no_cap
-		LDA #59
+		LDA.w #59
 		STA !timer_frames
-		LDA #59
+		LDA.w #59
 		STA !timer_seconds
-		LDA #9
+		LDA.w #9
 	.no_cap:
 		STA !timer_minutes
-		
 	.done:
 		STZ !real_frames_elapsed
-		STZ !real_frames_elapsed+1
+		SEP #$20
 		RTS
+
 		
 
 		

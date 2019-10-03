@@ -40,8 +40,8 @@ endif
 !real_frames_elapsed = !freeram+4
 
 !timer_frames = !freeram+6
-!timer_seconds = !freeram+7
-!timer_minutes = !freeram+8
+!timer_seconds = !freeram+8
+!timer_minutes = !freeram+10
 
-!timer_stopped = !freeram+9
-!timer_started = !freeram+10
+!timer_stopped = !freeram+12
+!timer_started = !freeram+13
