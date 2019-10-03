@@ -33,8 +33,7 @@ handle_displays:
 		INC !timer_stopped
 	+
 		
-	.draw
-	
+	.draw:
 		; convert seconds to decimal
 		LDA !timer_seconds
 		STA $4204
@@ -149,8 +148,6 @@ tick_timer:
 		STZ !real_frames_elapsed
 		SEP #$20
 		RTS
-
-		
 
 		
 draw_dropped_frames:

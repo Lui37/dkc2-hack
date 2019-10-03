@@ -14,4 +14,3 @@ org hijack_bonus_intro
 org hijack_lives
 		JMP handle_displays
 		
-		
