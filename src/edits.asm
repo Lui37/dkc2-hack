@@ -8,3 +8,8 @@ org lives_dec
 org end_bananas
 		RTS
 		
+org end_lives
+		RTS
+		
+org bypass_hud_face
+		BRA + : NOP #2 : +

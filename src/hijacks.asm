@@ -12,5 +12,4 @@ org hijack_bonus_intro
 		JSL every_intermission_frame
 		
 org hijack_lives
-		JMP handle_displays
-		
+		JSR handle_displays

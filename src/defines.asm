@@ -8,6 +8,8 @@ if !rom_revision == 0
 	freerom_BB = $BBF850
 	lives_dec = $BEC66D
 	hijack_lives = $BEC70E
+	end_lives = $BEC7AE
+	bypass_hud_face = $BEC809
 	end_bananas = $BEC89F
 	draw_digit = $BEC814
 	freerom_BE = $BEFB5C
@@ -18,6 +20,8 @@ elseif !rom_revision == 1
 	freerom_BB = $BBF840
 	lives_dec = $BEC678
 	hijack_lives = $BEC719
+	end_lives = $BEC7B9
+	bypass_hud_face = $BEC814
 	end_bananas = $BEC8AA
 	draw_digit = $BEC81F
 	freerom_BE = $BEFB67
