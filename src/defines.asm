@@ -36,7 +36,9 @@ endif
 ; wram
 !freeram = $1A00
 
-!current_bgm = $1C
+!fade_type = $0513
+!level_state = $0AF1
+
 !counter_60hz = $2C
 !previous_60hz = !freeram+0
 

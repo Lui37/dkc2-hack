@@ -4,7 +4,7 @@ handle_displays:
 		SEP #$20
 		LDA !timer_started
 		BNE .active
-		LDA $0513
+		LDA !fade_type
 		BEQ .start
 		; ignore frames elapsed before taking control at the start of a level
 		STZ !real_frames_elapsed
@@ -16,7 +16,7 @@ handle_displays:
 		BRA .update
 		
 	.active:
-		LDA $0513
+		LDA !fade_type
 		BMI .skip_update
 		LDA !timer_stopped
 		BNE .draw
@@ -27,7 +27,7 @@ handle_displays:
 	.skip_update:
 		; checking here lets the timer tick on the first frame you hit the goal
 		; to properly account for lag frames
-		LDA $0AF1
+		LDA !level_state
 		CMP #$A0
 		BNE +
 		INC !timer_stopped
