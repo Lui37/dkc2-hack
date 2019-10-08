@@ -6,6 +6,7 @@ if !rom_revision == 0
 	hijack_map = $B5D404
 	hijack_bonus_intro = $808CA4
 	freerom_BB = $BBF850
+	dk_coin_check = $BEBA35
 	lives_dec = $BEC66D
 	hijack_lives = $BEC70E
 	end_lives = $BEC7AE
@@ -18,6 +19,7 @@ elseif !rom_revision == 1
 	hijack_bonus_intro = $808CD3
 	hijack_map = $B5D424
 	freerom_BB = $BBF840
+	dk_coin_check = $BEBA40
 	lives_dec = $BEC678
 	hijack_lives = $BEC719
 	end_lives = $BEC7B9

@@ -13,3 +13,7 @@ org end_lives
 		
 org bypass_hud_face
 		BRA + : NOP #2 : +
+
+; always spawn dk coins as not collected
+org dk_coin_check
+		BRA $0E
