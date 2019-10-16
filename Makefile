@@ -17,4 +17,4 @@ j1.1ss:
 all: j1.0 j1.1 u1.0 u1.1 j1.1ss
 
 clean:
-	rm -f target/*
+	rm -f target/*.sfc

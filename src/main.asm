@@ -12,6 +12,7 @@ incsrc "hijacks.asm"
 org freerom_BB
 incsrc "level.asm"
 incsrc "map.asm"
+incsrc "nmi.asm"
 
 org freerom_BE
 incsrc "hud.asm"
