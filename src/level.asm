@@ -24,9 +24,7 @@ handle_frame_counters:
 		LDA !counter_60hz
 		SEC
 		SBC !previous_60hz
-		TAY
 		STA !real_frames_elapsed
-		TYA
 		SEC
 		SBC #$0001
 		CLC
@@ -43,6 +41,11 @@ tick_timer:
 		LDA !timer_started
 		BEQ .done
 		LDA !timer_stopped
+		BNE .done
+		
+		; skip if game is paused
+		LDA $0621
+		AND #$0080
 		BNE .done
 		
 		LDA !timer_frames

@@ -40,28 +40,28 @@ endif
 ; wram
 !freeram = $1A00
 
-!freeram_claimed = 0
-macro claim_freeram(size)
-	!freeram+!freeram_claimed
-	!freeram_claimed #= !freeram_claimed+<size>
+!freeram_used = 0
+macro def_freeram(id, size)
+	!<id> := !freeram+!freeram_used
+	!freeram_used #= !freeram_used+<size>
 endmacro
 
 !fade_type = $0513
 !level_state = $0AF1
 
-!counter_60hz = %claim_freeram(2)
-!previous_60hz = %claim_freeram(2)
+%def_freeram(counter_60hz, 2)
+%def_freeram(previous_60hz, 2)
 
-!dropped_frames = %claim_freeram(2)
-!real_frames_elapsed = %claim_freeram(2)
+%def_freeram(dropped_frames, 2)
+%def_freeram(real_frames_elapsed, 2)
 
-!timer_frames = %claim_freeram(2)
-!timer_seconds = %claim_freeram(2)
-!timer_minutes = %claim_freeram(2)
+%def_freeram(timer_frames, 2)
+%def_freeram(timer_seconds, 2)
+%def_freeram(timer_minutes, 2)
 
-!timer_disp_frames = %claim_freeram(2)
-!timer_disp_seconds = %claim_freeram(2)
-!timer_disp_minutes = %claim_freeram(2)
+%def_freeram(timer_disp_frames, 2)
+%def_freeram(timer_disp_seconds, 2)
+%def_freeram(timer_disp_minutes, 2)
 
-!timer_stopped = %claim_freeram(2)
-!timer_started = %claim_freeram(2)
+%def_freeram(timer_stopped, 2)
+%def_freeram(timer_started, 2)
