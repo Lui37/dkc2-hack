@@ -1,7 +1,6 @@
 @include
 
 handle_displays:
-		WDM
 		SEP #$20
 		LDA !timer_started
 		BNE .active
