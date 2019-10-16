@@ -1,7 +1,9 @@
 @include
 
 every_igt_frame:
+		WDM
 		JSR handle_frame_counters
+		WDM
 		LDA #$8608
 		STA $20
 		RTL

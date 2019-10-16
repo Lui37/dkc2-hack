@@ -1,6 +1,7 @@
 @include
 
 handle_displays:
+		WDM
 		SEP #$20
 		LDA !timer_started
 		BNE .active
@@ -80,8 +81,10 @@ handle_displays:
 		LDA $4216
 		JSR draw_digit
 		
-		JMP draw_dropped_frames
-		
+		JSR draw_dropped_frames
+		LDA $0973
+		WDM
+		RTS
 		
 tick_timer:
 		REP #$20
