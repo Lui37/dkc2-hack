@@ -3,6 +3,7 @@
 ; define rom locations based on rom revision
 if !rom_revision == 0
 	hijack_level = $808640
+	hijack_nmi = $80F398
 	hijack_map = $B5D404
 	hijack_bonus_intro = $808CA4
 	freerom_BB = $BBF850
@@ -16,6 +17,7 @@ if !rom_revision == 0
 	freerom_BE = $BEFB5C
 elseif !rom_revision == 1
 	hijack_level = $808640
+	hijack_nmi = $80F3D8
 	hijack_bonus_intro = $808CD3
 	hijack_map = $B5D424
 	freerom_BB = $BBF840
@@ -38,18 +40,29 @@ endif
 ; wram
 !freeram = $1A00
 
+!freeram_used = 0
+macro def_freeram(id, size)
+	!<id> := !freeram+!freeram_used
+	!freeram_used #= !freeram_used+<size>
+endmacro
+
 !fade_type = $0513
 !level_state = $0AF1
 
 !counter_60hz = $2C
-!previous_60hz = !freeram+0
 
-!dropped_frames = !freeram+2
-!real_frames_elapsed = !freeram+4
+%def_freeram(previous_60hz, 2)
 
-!timer_frames = !freeram+6
-!timer_seconds = !freeram+8
-!timer_minutes = !freeram+10
+%def_freeram(dropped_frames, 2)
+%def_freeram(real_frames_elapsed, 2)
 
-!timer_stopped = !freeram+12
-!timer_started = !freeram+13
+%def_freeram(timer_frames, 2)
+%def_freeram(timer_seconds, 2)
+%def_freeram(timer_minutes, 2)
+
+%def_freeram(timer_disp_frames, 2)
+%def_freeram(timer_disp_seconds, 2)
+%def_freeram(timer_disp_minutes, 2)
+
+%def_freeram(timer_stopped, 2)
+%def_freeram(timer_started, 2)

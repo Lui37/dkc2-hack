@@ -1,11 +1,18 @@
 @include
 
 every_igt_frame:
-		WDM
 		JSR handle_frame_counters
-		WDM
+		JSR tick_timer
 		LDA #$8608
 		STA $20
+		RTL
+
+
+; bonus intro
+every_intermission_frame:
+		JSL $80897C
+		JSR handle_frame_counters
+		JSR tick_timer
 		RTL
 
 
@@ -13,16 +20,9 @@ handle_frame_counters:
 		LDA !counter_60hz
 		SEC
 		SBC !previous_60hz
-		; SEP #$10
-		; LDY $0621
-		; REP #$11
-		; BMI .end
-		TAY
-		CLC
-		ADC !real_frames_elapsed
 		STA !real_frames_elapsed
-		TYA
 		DEC
+		SED
 		CLC
 		ADC !dropped_frames
 		STA !dropped_frames
@@ -32,10 +32,48 @@ handle_frame_counters:
 		STA !previous_60hz
 		RTS
 		
+
+tick_timer:
+		SEP #$28
+		LDA !timer_started
+		BEQ .done
+		LDA !timer_stopped
+		BNE .done
 		
-; bonus intro
-every_intermission_frame:
-		JSL $80897C
-		JSR handle_frame_counters
-		RTL
+		; skip if game is paused
+		LDA $0621
+		BMI .done
+		
+		LDA !timer_frames
+		CLC
+		ADC !real_frames_elapsed
+		STA !timer_frames
+		CMP #$60
+		BCC .done
+		
+		SBC #$60
+		STA !timer_frames
+		TDC
+		ADC !timer_seconds
+		STA !timer_seconds
+		CMP #$60
+		BCC .done
+		
+		SBC #$60
+		STA !timer_seconds
+		TDC
+		ADC !timer_minutes
+		STA !timer_minutes
+		CMP #$10
+		BCC .no_cap
+		LDA #$59
+		STA !timer_frames
+		LDA #$59
+		STA !timer_seconds
+		LDA #$59
+	.no_cap:
+		STA !timer_minutes
+	.done:
+		REP #$28
+		RTS
 		
