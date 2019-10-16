@@ -1,10 +1,10 @@
 @include
 
 handle_displays:
+		SEP #$20
 		LDA !timer_started
 		BNE .active
 		LDA !fade_type
-		AND #$00FF
 		BNE .draw
 		
 	.start:
@@ -13,8 +13,7 @@ handle_displays:
 		
 	.active:
 		LDA !fade_type
-		AND #$0080
-		BNE .skip_update
+		BMI .skip_update
 		LDA !timer_stopped
 		BNE .draw
 		
@@ -30,13 +29,13 @@ handle_displays:
 		; checking here lets the timer tick on the first frame you hit the goal
 		; to properly account for lag frames
 		LDA !level_state
-		AND #$00FF
-		CMP #$00A0
+		CMP #$A0
 		BNE +
 		INC !timer_stopped
 	+
 		
 	.draw:
+		REP #$20
 		; starting x position
 		LDX #!timer_x
 		; starting y position
@@ -84,21 +83,23 @@ draw_dropped_frames:
 		LDA #$0009
 		JSR draw_digit
 		LDA #$0009
-		JMP draw_digit
+		BRA .last
 		
 	.no_cap:
 		; hundreds
-		LDA !dropped_frames
-		LSR #4
-		PHA
-		LSR #4
+		XBA
+		AND #$00FF
 		JSR draw_digit
 		; tens
-		PLA
+		LDA !dropped_frames
+		LSR #4
 		AND #$000F
 		JSR draw_digit
 		; units
 		LDA !dropped_frames
 		AND #$000F
-		JMP draw_digit
+	.last:
+		JSR draw_digit
+		LDA $0973
+		RTS
 		

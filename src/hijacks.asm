@@ -4,11 +4,6 @@ org hijack_level
 		JSL every_igt_frame
 		NOP
 		
-org hijack_nmi
-		REP #$21
-		JML every_frame
-	hijack_nmi_return:
-
 org hijack_map
 		JSL every_map_frame
 		NOP

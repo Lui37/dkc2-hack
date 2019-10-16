@@ -1,10 +1,8 @@
 @include
 
 every_igt_frame:
-		SED
 		JSR handle_frame_counters
 		JSR tick_timer
-		CLD
 		LDA #$8608
 		STA $20
 		RTL
@@ -13,10 +11,8 @@ every_igt_frame:
 ; bonus intro
 every_intermission_frame:
 		JSL $80897C
-		SED
 		JSR handle_frame_counters
 		JSR tick_timer
-		CLD
 		RTL
 
 
@@ -25,8 +21,8 @@ handle_frame_counters:
 		SEC
 		SBC !previous_60hz
 		STA !real_frames_elapsed
-		SEC
-		SBC #$0001
+		DEC
+		SED
 		CLC
 		ADC !dropped_frames
 		STA !dropped_frames
@@ -38,6 +34,7 @@ handle_frame_counters:
 		
 
 tick_timer:
+		SEP #$28
 		LDA !timer_started
 		BEQ .done
 		LDA !timer_stopped
@@ -45,38 +42,38 @@ tick_timer:
 		
 		; skip if game is paused
 		LDA $0621
-		AND #$0080
-		BNE .done
+		BMI .done
 		
 		LDA !timer_frames
 		CLC
 		ADC !real_frames_elapsed
 		STA !timer_frames
-		CMP #$0060
+		CMP #$60
 		BCC .done
 		
-		SBC #$0060
+		SBC #$60
 		STA !timer_frames
 		TDC
 		ADC !timer_seconds
 		STA !timer_seconds
-		CMP #$0060
+		CMP #$60
 		BCC .done
 		
-		SBC #$0060
+		SBC #$60
 		STA !timer_seconds
 		TDC
 		ADC !timer_minutes
 		STA !timer_minutes
-		CMP #$0010
+		CMP #$10
 		BCC .no_cap
-		LDA #$0059
+		LDA #$59
 		STA !timer_frames
-		LDA #$0059
+		LDA #$59
 		STA !timer_seconds
-		LDA #$0059
+		LDA #$59
 	.no_cap:
 		STA !timer_minutes
 	.done:
+		REP #$28
 		RTS
 		

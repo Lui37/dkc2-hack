@@ -49,7 +49,8 @@ endmacro
 !fade_type = $0513
 !level_state = $0AF1
 
-%def_freeram(counter_60hz, 2)
+!counter_60hz = $2C
+
 %def_freeram(previous_60hz, 2)
 
 %def_freeram(dropped_frames, 2)
