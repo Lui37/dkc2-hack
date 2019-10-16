@@ -1,6 +1,6 @@
 features
 - frame counter on the top right of the screen, in "m ss ff" (minutes, seconds, frames). ignores loading time during transitions
-- pausing the game freezes the timer display, note that it will still be running though
+- pausing the game freezes the timer
 - lag frame counter on the top left of the screen
 - infinite lives
 
