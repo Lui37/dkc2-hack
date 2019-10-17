@@ -13,5 +13,9 @@ org freerom_BB
 incsrc "level.asm"
 incsrc "map.asm"
 
+warnpc $BBFFFF
+
 org freerom_BE
 incsrc "hud.asm"
+
+warnpc $BEFFFF

@@ -67,3 +67,6 @@ endmacro
 
 %def_freeram(timer_stopped, 2)
 %def_freeram(timer_started, 2)
+
+
+assert !freeram+!freeram_used < $2000, "exceeded freeram area"
