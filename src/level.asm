@@ -16,6 +16,7 @@ every_intermission_frame:
 		RTL
 
 
+; exits in decimal mode
 handle_frame_counters:
 		LDA !counter_60hz
 		SEC
@@ -26,14 +27,13 @@ handle_frame_counters:
 		CLC
 		ADC !dropped_frames
 		STA !dropped_frames
-		
-	.end:
 		LDA !counter_60hz
 		STA !previous_60hz
 		RTS
 		
-
+		
 tick_timer:
+		; decimal mode
 		SEP #$28
 		LDA !timer_started
 		BEQ .done
