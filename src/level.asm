@@ -41,8 +41,8 @@ tick_timer:
 		BNE .done
 		
 		; skip if game is paused
-		; LDA $0621
-		; BMI .done
+		BIT $08C2
+		BVS .done
 		
 		LDA !timer_frames
 		CLC
