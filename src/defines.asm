@@ -48,6 +48,7 @@ endmacro
 
 !fade_type = $0513
 !level_state = $0AF1
+!pause_flags = $08C2
 
 !counter_60hz = $2C
 

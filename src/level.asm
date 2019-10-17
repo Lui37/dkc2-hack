@@ -41,7 +41,7 @@ tick_timer:
 		BNE .done
 		
 		; skip if game is paused
-		BIT $08C2
+		BIT !pause_flags
 		BVS .done
 		
 		LDA !timer_frames
