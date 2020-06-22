@@ -14,7 +14,7 @@ if !rom_revision == 0
 	bypass_hud_face = $BEC809
 	end_bananas = $BEC89F
 	draw_digit = $BEC814
-	freerom_BE = $BEFB5C
+	freerom_BE = $BEFB8A
 elseif !rom_revision == 1
 	hijack_level = $808640
 	hijack_nmi = $80F3D8
