@@ -1,5 +1,9 @@
 @include
 
+; u1.0 checksum
+org $00FFDC
+		dw $1202^$FFFF, $1202
+
 ; never lose a life
 org lives_dec
 		BRA + : NOP : +
