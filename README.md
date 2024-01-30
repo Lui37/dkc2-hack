@@ -1,4 +1,4 @@
-#dkc2-hack
+# dkc2-hack
 Donkey Kong Country 2 romhack for speedrun practice
 
 To be assembled using [Asar](https://github.com/RPGHacker/asar), see the Makefile.
