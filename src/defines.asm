@@ -46,9 +46,17 @@ macro def_freeram(id, size)
 	!freeram_used #= !freeram_used+<size>
 endmacro
 
+!io_axlr = $050E
+!io_byetudlr = $050F
+!io_axlr_1f = $0510
+!io_byetudlr_1f = $0511
 !fade_type = $0513
-!level_state = $0AF1
+!main_kong = $0593
+!follower_kong = $0597
+!current_map_kong = $08A4
 !pause_flags = $08C2
+!extra_kong_flag = $08C2
+!level_state = $0AF1
 
 !counter_60hz = $2C
 
