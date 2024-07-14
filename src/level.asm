@@ -1,4 +1,4 @@
-@include
+include
 
 every_igt_frame:
 		JSR handle_frame_counters

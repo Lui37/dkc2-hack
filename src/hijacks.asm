@@ -1,4 +1,4 @@
-@include
+include
 
 org hijack_level
 		JSL every_igt_frame

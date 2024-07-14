@@ -1,4 +1,4 @@
-@include
+include
 
 handle_displays:
 		SEP #$20

@@ -1,4 +1,4 @@
-@include
+include
 
 ; u1.0 checksum
 org $00FFDC
@@ -21,3 +21,7 @@ org bypass_hud_face
 ; always spawn dk coins as not collected
 org dk_coin_check
 		BRA $0E
+
+; don't load the video game heroes screen
+org vgheroes_check
+		BRA $11 : NOP

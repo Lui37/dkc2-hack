@@ -1,3 +1,4 @@
+asar 1.91
 hirom
 
 ; 0 for 1.0
@@ -13,9 +14,9 @@ org freerom_BB
 incsrc "level.asm"
 incsrc "map.asm"
 
-warnpc $BBFFFF
+assert pc() <= $BBFFFF
 
 org freerom_BE
 incsrc "hud.asm"
 
-warnpc $BEFFFF
+assert pc() <= $BEFFFF
